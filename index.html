@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyGo - Pitch Deck</title>
+    <!-- Tailwind CSS para layouts de alta fidelidad -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        title: ['Urbanist', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: {
+                            bg: '#070709',
+                            card: '#0f0f13',
+                            border: 'rgba(255, 255, 255, 0.08)',
+                            muted: '#8a8f98'
+                        },
+                        brand: {
+                            blue: '#5e6ad2',
+                            mint: '#4ade80',
+                            glow: 'rgba(94, 106, 210, 0.15)'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Estilos personalizados para animaciones y estética premium */
+        .slide {
+            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .slide.inactive {
+            opacity: 0;
+            transform: scale(0.98) translateY(10px);
+            pointer-events: none;
+        }
+        .slide.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: auto;
+        }
+        .glass-panel {
+            background: rgba(15, 15, 19, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #ffffff 0%, #a2a6b0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glow-effect {
+            box-shadow: 0 0 40px 5px rgba(94, 106, 210, 0.1);
+        }
+
+        /* Estilos adicionales para la animación del Modal */
+        .modal-overlay {
+            transition: opacity 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+    </style>
+</head>
+<body class="bg-dark-bg text-gray-100 font-sans h-screen w-screen overflow-hidden select-none">
+
+    <!-- Indicador de fondo de red de puntos sutiles (Dotted Grid background) -->
+    <div class="absolute inset-0 bg-[radial-gradient(#ffffff08_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none z-0"></div>
+
+    <!-- Glow decorativo superior -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand-blue opacity-20 blur-[120px] rounded-full pointer-events-none z-0"></div>
+
+    <!-- CONTENEDOR PRINCIPAL DE DIAPOSITIVAS -->
+    <div class="relative w-full h-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col justify-between py-8 z-10">
+        
+        <!-- Header persistente (Estilo Saas Header) -->
+        <header class="flex justify-between items-center py-4 border-b border-dark-border">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-blue to-[#8b5cf6] flex items-center justify-center font-title font-bold text-white text-lg">S</div>
+                <span class="font-title font-bold text-xl tracking-tight">StudyGo<span class="text-brand-blue">.</span></span>
+            </div>
+            <div class="flex items-center gap-4 text-sm text-dark-muted">
+                <span class="px-3 py-1 bg-white/5 border border-dark-border rounded-full font-mono text-xs">PITCH DECK</span>
+            </div>
+        </header>
+
+        <!-- ESPACIO DINÁMICO DE LAS SLIDES -->
+        <main class="relative flex-grow my-8 flex items-center justify-center">
+
+            <!-- SLIDE 1: PORTADA HERO -->
+            <div id="slide-0" class="slide active absolute inset-0 flex flex-col justify-center text-center">
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-brand-blue/10 border border-brand-blue/30 rounded-full text-brand-blue text-xs font-semibold tracking-wide uppercase mx-auto mb-6">
+                    <span class="w-2 h-2 rounded-full bg-brand-mint animate-pulse"></span> Presentación Oficial
+                </div>
+                <h1 class="font-title text-6xl md:text-8xl font-black tracking-tight leading-none mb-6">
+                    El <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-cyan-400">Sistema Operativo</span> <br>académico de la tecnología
+                </h1>
+                <p class="max-w-2xl mx-auto text-dark-muted text-lg md:text-xl font-light mb-10">
+                    Centralizando el aprendizaje, el desarrollo de software y la colaboración ágil en un solo espacio unificado para estudiantes y docentes.
+                </p>
+                <div class="flex justify-center gap-4">
+                    <button onclick="changeSlide(1)" class="px-6 py-3 bg-brand-blue hover:bg-brand-blue/90 text-white rounded-lg font-medium transition-all duration-200 shadow-lg shadow-brand-blue/20">
+                        Ver propuesta <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- SLIDE 2: EL PROBLEMA -->
+            <div id="slide-1" class="slide inactive absolute inset-0 flex flex-col justify-center">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center h-full max-h-[500px]">
+                    <div class="lg:col-span-5 space-y-6">
+                        <span class="text-red-400 font-semibold text-xs tracking-wider uppercase block">EL PROBLEMA ACTUAL</span>
+                        <h2 class="font-title text-4xl md:text-5xl font-extrabold tracking-tight">La fragmentación digital académica.</h2>
+                        <p class="text-dark-muted text-base">
+                            Estudiantes y docentes navegan a diario en un ecosistema de herramientas inconexas, provocando fricción operativa y pérdidas críticas de información.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-6 h-6 rounded-full bg-red-500/10 flex items-center justify-center text-red-400 text-xs"><i class="fa-solid fa-circle-exclamation"></i></div>
+                                <span class="text-sm font-medium text-gray-300">Google Drive para entregas sin contexto</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-6 h-6 rounded-full bg-red-500/10 flex items-center justify-center text-red-400 text-xs"><i class="fa-solid fa-circle-exclamation"></i></div>
+                                <span class="text-sm font-medium text-gray-300">WhatsApp / Discord donde el feedback muere</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-6 h-6 rounded-full bg-red-500/10 flex items-center justify-center text-red-400 text-xs"><i class="fa-solid fa-circle-exclamation"></i></div>
+                                <span class="text-sm font-medium text-gray-300">Entornos locales complejos que frenan el inicio</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:col-span-7 grid grid-cols-2 gap-4 h-full">
+                        <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between border-red-500/10">
+                            <span class="text-dark-muted text-xs font-mono">FRUSTRACIÓN DOCENTE</span>
+                            <div>
+                                <h4 class="text-3xl font-extrabold text-red-400">70%</h4>
+                                <p class="text-xs text-dark-muted mt-1">Del tiempo se pierde en setups locales e importación manual de proyectos.</p>
+                            </div>
+                        </div>
+                        <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between">
+                            <span class="text-dark-muted text-xs font-mono">DESCONEXIÓN</span>
+                            <div>
+                                <h4 class="text-3xl font-extrabold text-gray-300">5+ Apps</h4>
+                                <p class="text-xs text-dark-muted mt-1 font-sans">Promedio utilizadas por materia para gestionar tareas, chat y código.</p>
+                            </div>
+                        </div>
+                        <div class="col-span-2 glass-panel p-5 rounded-2xl flex items-center justify-between bg-gradient-to-r from-red-950/20 to-transparent border-red-500/10">
+                            <div class="flex gap-4 items-center">
+                                <div class="text-4xl text-red-400/80"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-sm">Pérdida de trazabilidad académica</h4>
+                                    <p class="text-xs text-dark-muted">Los profesores evalúan "a ciegas" sin conocer el progreso real del código.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 3: LA SOLUCIÓN -->
+            <div id="slide-2" class="slide inactive absolute inset-0 flex flex-col justify-center">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center h-full max-h-[500px]">
+                    <div class="lg:col-span-5 space-y-4">
+                        <span class="text-brand-mint font-semibold text-xs tracking-wider uppercase block">LA SOLUCIÓN INTEGRAL</span>
+                        <h2 class="font-title text-4xl md:text-5xl font-extrabold tracking-tight">El Hub Académico Todo-en-Uno</h2>
+                        <p class="text-dark-muted text-xs leading-relaxed">
+                            StudyGo reemplaza la fricción de saltar entre Classroom, Teams y editores locales. Fusionamos la administración de grupos con herramientas de desarrollo en un entorno síncrono.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-3 pt-1">
+                            <div class="p-3 rounded-lg bg-white/5 border border-dark-border">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <i class="fa-solid fa-graduation-cap text-brand-mint text-xs"></i>
+                                    <h4 class="text-xs font-bold text-gray-200">Aulas & Tareas</h4>
+                                </div>
+                                <p class="text-[10px] text-dark-muted">Flujo estilo Classroom optimizado para código y proyectos ágiles.</p>
+                            </div>
+                            <div class="p-3 rounded-lg bg-white/5 border border-dark-border">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <i class="fa-solid fa-users text-brand-blue text-xs"></i>
+                                    <h4 class="text-xs font-bold text-gray-200">Trabajo en Equipo</h4>
+                                </div>
+                                <p class="text-[10px] text-dark-muted">Gestión de grupos con repositorios e hilos de chat internos.</p>
+                            </div>
+                            <div class="p-3 rounded-lg bg-white/5 border border-dark-border">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <i class="fa-solid fa-code text-[#8b5cf6] text-xs"></i>
+                                    <h4 class="text-xs font-bold text-gray-200">Workspace & IDE</h4>
+                                </div>
+                                <p class="text-[10px] text-dark-muted">Pruebas, compilación y despliegue web sin salir de la clase.</p>
+                            </div>
+                            <div class="p-3 rounded-lg bg-white/5 border border-dark-border">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <i class="fa-solid fa-star text-yellow-400 text-xs"></i>
+                                    <h4 class="text-xs font-bold text-gray-200">Feedback Contextual</h4>
+                                </div>
+                                <p class="text-[10px] text-dark-muted">Correcciones directas e inline sobre las líneas entregadas.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 h-full flex items-center justify-center">
+                        <div class="w-full glass-panel rounded-2xl overflow-hidden shadow-2xl glow-effect">
+                            <div class="bg-dark-card/90 px-4 py-3 border-b border-dark-border flex justify-between items-center">
+                                <div class="flex gap-2">
+                                    <span class="w-3 h-3 rounded-full bg-red-500/60 block"></span>
+                                    <span class="w-3 h-3 rounded-full bg-yellow-500/60 block"></span>
+                                    <span class="w-3 h-3 rounded-full bg-brand-mint/60 block"></span>
+                                </div>
+                                <div class="px-3 py-1 bg-dark-bg/60 rounded-md border border-dark-border text-xs font-mono text-dark-muted flex items-center gap-2 w-1/2 justify-center">
+                                    <i class="fa-solid fa-graduation-cap text-[10px]"></i> studygo.edu/clases/estructuras-datos
+                                </div>
+                                <div class="text-dark-muted text-xs flex gap-2"><i class="fa-solid fa-user-group"></i> <span class="text-[10px]">Grupo 4A</span></div>
+                            </div>
+                            <div class="bg-[#111115] border-b border-dark-border px-4 py-2 flex gap-4 text-[11px] font-medium text-dark-muted">
+                                <span class="text-white border-b-2 border-brand-blue pb-2 px-1 cursor-pointer"><i class="fa-solid fa-book-open mr-1.5"></i>Asignaciones</span>
+                                <span class="hover:text-white pb-2 px-1 cursor-pointer"><i class="fa-solid fa-chart-gantt mr-1.5"></i>Tablero Agile</span>
+                                <span class="hover:text-white pb-2 px-1 cursor-pointer"><i class="fa-solid fa-terminal mr-1.5"></i>Terminal IDE</span>
+                                <span class="hover:text-white pb-2 px-1 cursor-pointer text-brand-mint"><i class="fa-solid fa-comments mr-1.5"></i>Chat Aula (4)</span>
+                            </div>
+                            <div class="grid grid-cols-12 h-[240px] text-xs font-mono">
+                                <div class="col-span-5 bg-[#121217] p-3 border-r border-dark-border space-y-3 overflow-y-auto">
+                                    <div class="p-2 bg-brand-blue/5 rounded border border-brand-blue/15">
+                                        <div class="flex justify-between items-center mb-1">
+                                            <span class="text-[10px] text-brand-mint font-bold uppercase">Tarea en curso</span>
+                                            <span class="text-[9px] text-dark-muted">Faltan 2d</span>
+                                        </div>
+                                        <h5 class="text-white font-sans font-semibold text-[11px]">T03: Implementación Pilas</h5>
+                                        <p class="text-[9px] text-dark-muted mt-1">Completa la lógica interna de los métodos push() y pop().</p>
+                                    </div>
+                                    <div class="p-2 bg-white/5 rounded border border-dark-border/40">
+                                        <div class="flex justify-between items-center mb-1">
+                                            <span class="text-[10px] text-dark-muted font-bold uppercase">Entregado</span>
+                                            <span class="text-[9px] text-brand-mint"><i class="fa-solid fa-check"></i> 100/100</span>
+                                        </div>
+                                        <h5 class="text-gray-400 font-sans font-semibold text-[11px]">T02: Colas de Prioridad</h5>
+                                    </div>
+                                </div>
+                                <div class="col-span-7 bg-[#0c0c0f] p-3 flex flex-col justify-between">
+                                    <div class="space-y-1 text-gray-400 text-[11px]">
+                                        <p class="text-dark-muted">// Resolver aquí dentro del aula:</p>
+                                        <p><span class="text-pink-500">class</span> <span class="text-blue-400">Pila</span> {</p>
+                                        <p class="pl-4"><span class="text-pink-500">constructor</span>() {</p>
+                                        <p class="pl-8 text-brand-mint">this.items = [];</p>
+                                        <p class="pl-4">}</p>
+                                        <p class="pl-4"><span class="text-blue-400">push</span>(elemento) {</p>
+                                        <p class="pl-8">this.items.push(elemento);</p>
+                                        <p class="pl-4">}</p>
+                                        <p>}</p>
+                                    </div>
+                                    <div class="border-t border-dark-border/60 pt-2 flex justify-between items-center">
+                                        <div class="flex items-center gap-1.5 text-[9px] text-dark-muted">
+                                            <span class="w-1.5 h-1.5 bg-brand-mint rounded-full"></span>
+                                            Tests pasados (5/5)
+                                        </div>
+                                        <button class="px-2.5 py-1 bg-brand-blue text-white font-sans font-bold rounded hover:bg-brand-blue/90 transition text-[9px]">Entregar Proyecto <i class="fa-solid fa-paper-plane ml-1"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 4: PÚBLICO OBJETIVO -->
+            <div id="slide-3" class="slide inactive absolute inset-0 flex flex-col justify-center">
+                <span class="text-brand-blue font-semibold text-xs tracking-wider uppercase block mb-2 text-center">PÚBLICO OBJETIVO</span>
+                <h2 class="font-title text-4xl font-extrabold text-center mb-10">Un ecosistema diseñado para tres pilares.</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-panel p-8 rounded-2xl hover:border-brand-blue/30 transition-all duration-300 relative overflow-hidden group">
+                        <div class="absolute -right-6 -bottom-6 text-9xl text-white/5 group-hover:scale-110 transition-transform duration-300 pointer-events-none"><i class="fa-solid fa-code"></i></div>
+                        <div class="w-12 h-12 rounded-xl bg-brand-blue/10 flex items-center justify-center text-brand-blue text-xl mb-6"><i class="fa-solid fa-user-graduate"></i></div>
+                        <h3 class="font-title text-2xl font-bold mb-3">Estudiantes</h3>
+                        <p class="text-sm text-dark-muted leading-relaxed">
+                            Resuelven actividades de código directamente en el navegador, suben reportes a GitHub con un clic y consultan el avance de su ruta académica al instante.
+                        </p>
+                    </div>
+
+                    <div class="glass-panel p-8 rounded-2xl hover:border-brand-blue/30 transition-all duration-300 relative overflow-hidden group">
+                        <div class="absolute -right-6 -bottom-6 text-9xl text-white/5 group-hover:scale-110 transition-transform duration-300 pointer-events-none"><i class="fa-solid fa-check-double"></i></div>
+                        <div class="w-12 h-12 rounded-xl bg-brand-blue/10 flex items-center justify-center text-brand-blue text-xl mb-6"><i class="fa-solid fa-chalkboard-user"></i></div>
+                        <h3 class="font-title text-2xl font-bold mb-3">Docentes</h3>
+                        <p class="text-sm text-dark-muted leading-relaxed">
+                            Monitorean el código real desarrollado por cada estudiante, ejecutan tests automáticos sobre las entregas y configuran asignaciones en segundos.
+                        </p>
+                    </div>
+
+                    <div class="glass-panel p-8 rounded-2xl hover:border-brand-blue/30 transition-all duration-300 relative overflow-hidden group">
+                        <div class="absolute -right-6 -bottom-6 text-9xl text-white/5 group-hover:scale-110 transition-transform duration-300 pointer-events-none"><i class="fa-solid fa-chart-line"></i></div>
+                        <div class="w-12 h-12 rounded-xl bg-brand-blue/10 flex items-center justify-center text-brand-blue text-xl mb-6"><i class="fa-solid fa-server"></i></div>
+                        <h3 class="font-title text-2xl font-bold mb-3">Administradores</h3>
+                        <p class="text-sm text-dark-muted leading-relaxed">
+                            Obtienen analíticas de desempeño institucional de la facultad, gestionan accesos OAuth unificados y controlan la retención estudiantil.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 5: VALOR DIFERENCIAL Y FUTURO -->
+            <div id="slide-4" class="slide inactive absolute inset-0 flex flex-col justify-center">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center h-full max-h-[500px]">
+                    <div class="lg:col-span-5 space-y-6">
+                        <span class="text-brand-mint font-semibold text-xs tracking-wider uppercase block">IMPACTO & FUTURO</span>
+                        <h2 class="font-title text-4xl md:text-5xl font-extrabold tracking-tight">El estándar de las academias tech.</h2>
+                        <p class="text-dark-muted text-sm">
+                            El valor no está en añadir más herramientas, sino en orquestar el aprendizaje actual con las mismas dinámicas de la industria de software real.
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3">
+                                <i class="fa-regular fa-circle-check text-brand-mint text-lg mt-1"></i>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-gray-200">Centralización y Reducción de Tiempos</h4>
+                                    <p class="text-xs text-dark-muted">Hasta un 40% de optimización de tiempo en tareas académicas complejas.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fa-regular fa-circle-check text-brand-mint text-lg mt-1"></i>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-gray-200">Arquitectura Altamente Escalable</h4>
+                                    <p class="text-xs text-dark-muted">Listo para conectar motores de evaluación automática e Inteligencia Artificial.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 grid grid-cols-2 gap-4">
+                        <div class="p-6 rounded-2xl bg-gradient-to-br from-brand-blue/10 to-transparent border border-brand-blue/20">
+                            <h4 class="font-title text-lg font-bold text-gray-100 mb-1">Feedback Integrado</h4>
+                            <p class="text-xs text-dark-muted">Correcciones directly on-code sin foros dispersos de chat externo.</p>
+                        </div>
+                        <div class="p-6 rounded-2xl bg-white/5 border border-dark-border">
+                            <h4 class="font-title text-lg font-bold text-gray-100 mb-1">Control de Evidencias</h4>
+                            <p class="text-xs text-dark-muted">Trazabilidad real de commits y horas programadas para garantizar auditorías internas.</p>
+                        </div>
+                        <div class="p-6 rounded-2xl bg-white/5 border border-dark-border">
+                            <h4 class="font-title text-lg font-bold text-gray-100 mb-1">OAuth Unificado</h4>
+                            <p class="text-xs text-dark-muted">Login de un solo clic con Google o GitHub institucional.</p>
+                        </div>
+                        <div class="p-6 rounded-2xl bg-gradient-to-tr from-[#8b5cf6]/10 to-transparent border border-[#8b5cf6]/20">
+                            <h4 class="font-title text-lg font-bold text-brand-mint mb-1">Impacto Escalable</h4>
+                            <p class="text-xs text-dark-muted">Arquitectura moderna lista para asimilar integraciones avanzadas LMS.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 6: FUNCIONALIDADES DEL SISTEMA (NUEVA ADICIÓN INTERACTIVA) -->
+            <div id="slide-5" class="slide inactive absolute inset-0 flex flex-col justify-center">
+                
+                <div class="text-center mb-10">
+                    <span class="text-[#8b5cf6] font-semibold text-xs tracking-wider uppercase block mb-3">CONOCE LA PLATAFORMA</span>
+                    <h2 class="font-title text-4xl md:text-5xl font-extrabold tracking-tight mb-3">Funcionalidades del Sistema</h2>
+                    <p class="text-dark-muted text-base max-w-2xl mx-auto">
+                        Selecciona cualquier categoría para explorar las herramientas que lo hacen posible.
+                    </p>
+                </div>
+
+                <!-- Cuadrícula de 6 categorías principales -->
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-5 max-w-4xl mx-auto w-full">
+                    
+                    <!-- Botón 1 -->
+                    <div onclick="openModal('dev')" class="glass-panel p-6 rounded-2xl cursor-pointer hover:bg-white/5 hover:border-[#8b5cf6]/50 transition-all duration-300 group flex flex-col items-center text-center">
+                        <div class="w-14 h-14 rounded-full bg-[#8b5cf6]/10 flex items-center justify-center text-[#8b5cf6] text-2xl mb-4 group-hover:scale-110 group-hover:bg-[#8b5cf6]/20 transition-all duration-300">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-200 text-lg mb-1">Área de Trabajo</h3>
+                        <p class="text-xs text-dark-muted">Desarrollo y Código</p>
+                    </div>
+
+                    <!-- Botón 2 -->
+                    <div onclick="openModal('acad')" class="glass-panel p-6 rounded-2xl cursor-pointer hover:bg-white/5 hover:border-brand-blue/50 transition-all duration-300 group flex flex-col items-center text-center">
+                        <div class="w-14 h-14 rounded-full bg-brand-blue/10 flex items-center justify-center text-brand-blue text-2xl mb-4 group-hover:scale-110 group-hover:bg-brand-blue/20 transition-all duration-300">
+                            <i class="fa-solid fa-chalkboard-user"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-200 text-lg mb-1">Aulas Digitales</h3>
+                        <p class="text-xs text-dark-muted">Gestión de Tareas</p>
+                    </div>
+
+                    <!-- Botón 3 -->
+                    <div onclick="openModal('files')" class="glass-panel p-6 rounded-2xl cursor-pointer hover:bg-white/5 hover:border-yellow-400/50 transition-all duration-300 group flex flex-col items-center text-center">
+                        <div class="w-14 h-14 rounded-full bg-yellow-400/10 flex items-center justify-center text-yellow-400 text-2xl mb-4 group-hover:scale-110 group-hover:bg-yellow-400/20 transition-all duration-300">
+                            <i class="fa-solid fa-folder-open"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-200 text-lg mb-1">Archivos y Nube</h3>
+                        <p class="text-xs text-dark-muted">Almacenamiento Central</p>
+                    </div>
+
+                    <!-- Botón 4 -->
+                    <div onclick="openModal('chat')" class="glass-panel p-6 rounded-2xl cursor-pointer hover:bg-white/5 hover:border-brand-mint/50 transition-all duration-300 group flex flex-col items-center text-center">
+                        <div class="w-14 h-14 rounded-full bg-brand-mint/10 flex items-center justify-center text-brand-mint text-2xl mb-4 group-hover:scale-110 group-hover:bg-brand-mint/20 transition-all duration-300">
+                            <i class="fa-solid fa-comments"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-200 text-lg mb-1">Comunicación</h3>
+                        <p class="text-xs text-dark-muted">Chat y Notificaciones</p>
+                    </div>
+
+                    <!-- Botón 5 -->
+                    <div onclick="openModal('sec')" class="glass-panel p-6 rounded-2xl cursor-pointer hover:bg-white/5 hover:border-red-400/50 transition-all duration-300 group flex flex-col items-center text-center">
+                        <div class="w-14 h-14 rounded-full bg-red-400/10 flex items-center justify-center text-red-400 text-2xl mb-4 group-hover:scale-110 group-hover:bg-red-400/20 transition-all duration-300">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-200 text-lg mb-1">Accesos Seguros</h3>
+                        <p class="text-xs text-dark-muted">Logins e Integraciones</p>
+                    </div>
+
+                    <!-- Botón 6 -->
+                    <div onclick="openModal('metrics')" class="glass-panel p-6 rounded-2xl cursor-pointer hover:bg-white/5 hover:border-cyan-400/50 transition-all duration-300 group flex flex-col items-center text-center">
+                        <div class="w-14 h-14 rounded-full bg-cyan-400/10 flex items-center justify-center text-cyan-400 text-2xl mb-4 group-hover:scale-110 group-hover:bg-cyan-400/20 transition-all duration-300">
+                            <i class="fa-solid fa-chart-pie"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-200 text-lg mb-1">Métricas y Notas</h3>
+                        <p class="text-xs text-dark-muted">Análisis y Reportes</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODAL FLOTANTE DE FUNCIONALIDADES (Oculto por defecto) -->
+            <div id="feature-modal" class="modal-overlay absolute inset-0 z-50 hidden items-center justify-center bg-dark-bg/80 backdrop-blur-sm opacity-0" onclick="closeModal(event)">
+                <div id="feature-modal-content" class="modal-content relative glass-panel w-full max-w-md p-8 rounded-3xl transform scale-95 border border-dark-border shadow-2xl" onclick="event.stopPropagation()">
+                    
+                    <!-- Botón Cerrar (X) -->
+                    <button onclick="closeModal()" class="absolute top-5 right-5 w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    
+                    <!-- Icono dinámico -->
+                    <div id="modal-icon" class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-5"></div>
+                    
+                    <!-- Textos dinámicos -->
+                    <h3 id="modal-title" class="font-title text-3xl font-bold text-white mb-2 tracking-tight"></h3>
+                    <p class="text-sm text-dark-muted mb-6 border-b border-dark-border pb-4">Conoce las herramientas que conforman este módulo.</p>
+                    
+                    <!-- Lista de características dinámica -->
+                    <ul id="modal-list" class="space-y-4"></ul>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Footer interactivo (Controles, paso de diapositivas) -->
+        <footer class="flex justify-between items-center border-t border-dark-border py-4 mt-auto">
+            <div class="flex items-center gap-2">
+                <!-- Indicadores de página (ahora 6 puntos en lugar de 5) -->
+                <div id="slide-indicators" class="flex gap-1.5">
+                    <span onclick="goToSlide(0)" class="w-8 h-1 rounded-full bg-brand-blue transition-all duration-300 cursor-pointer"></span>
+                    <span onclick="goToSlide(1)" class="w-8 h-1 rounded-full bg-white/20 transition-all duration-300 cursor-pointer"></span>
+                    <span onclick="goToSlide(2)" class="w-8 h-1 rounded-full bg-white/20 transition-all duration-300 cursor-pointer"></span>
+                    <span onclick="goToSlide(3)" class="w-8 h-1 rounded-full bg-white/20 transition-all duration-300 cursor-pointer"></span>
+                    <span onclick="goToSlide(4)" class="w-8 h-1 rounded-full bg-white/20 transition-all duration-300 cursor-pointer"></span>
+                    <!-- Nuevo punto para Slide 6 -->
+                    <span onclick="goToSlide(5)" class="w-8 h-1 rounded-full bg-white/20 transition-all duration-300 cursor-pointer"></span>
+                </div>
+            </div>
+            
+            <div class="flex gap-3">
+                <button onclick="prevSlide()" class="w-10 h-10 border border-dark-border rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:border-white/20 transition-colors">
+                    <i class="fa-solid fa-chevron-left text-sm"></i>
+                </button>
+                <button onclick="nextSlide()" class="w-10 h-10 bg-white/5 hover:bg-white/10 border border-dark-border rounded-lg flex items-center justify-center text-gray-200 hover:text-white transition-colors">
+                    <i class="fa-solid fa-chevron-right text-sm"></i>
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Sistema JavaScript de navegación interactiva y responsive keys -->
+    <script>
+        // --- NAVEGACIÓN DE DIAPOSITIVAS ---
+        let currentSlide = 0;
+        const totalSlides = 6; // Cambiado a 6
+
+        function updateSlideVisibility() {
+            for (let i = 0; i < totalSlides; i++) {
+                const slide = document.getElementById(`slide-${i}`);
+                if (i === currentSlide) {
+                    slide.classList.remove('inactive');
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                    slide.classList.add('inactive');
+                }
+            }
+            
+            // Actualizar indicadores (puntos abajo)
+            const indicators = document.getElementById('slide-indicators').children;
+            for (let i = 0; i < indicators.length; i++) {
+                if (i === currentSlide) {
+                    indicators[i].classList.replace('bg-white/20', 'bg-brand-blue');
+                } else {
+                    indicators[i].classList.replace('bg-brand-blue', 'bg-white/20');
+                }
+            }
+        }
+
+        function changeSlide(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateSlideVisibility();
+        }
+
+        function nextSlide() { changeSlide(1); }
+        function prevSlide() { changeSlide(-1); }
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlideVisibility();
+        }
+
+        // Listener para teclado
+        window.addEventListener('keydown', (e) => {
+            // Evitar cambiar de slide si el modal está abierto
+            const modal = document.getElementById('feature-modal');
+            if (modal && !modal.classList.contains('hidden')) {
+                if (e.key === 'Escape') closeModal();
+                return;
+            }
+
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        // --- LÓGICA DEL MODAL DE FUNCIONALIDADES ---
+        
+        // Base de datos de las funcionalidades
+        const featureData = {
+            'dev': {
+                icon: '<i class="fa-solid fa-laptop-code"></i>',
+                color: 'text-[#8b5cf6]',
+                bg: 'bg-[#8b5cf6]/20',
+                title: 'Área de Trabajo',
+                items: [
+                    'IDE integrado directo en el navegador.',
+                    'Entrega y gestión rápida de proyectos.',
+                    'Retroalimentación directa sobre las actividades.',
+                    'Seguimiento al código de cada estudiante.'
+                ]
+            },
+            'acad': {
+                icon: '<i class="fa-solid fa-chalkboard-user"></i>',
+                color: 'text-brand-blue',
+                bg: 'bg-brand-blue/20',
+                title: 'Aulas Digitales',
+                items: [
+                    'Administración de usuarios y sus permisos (roles).',
+                    'Asignación y revisión de estados en las tareas.',
+                    'Calendario académico para fechas importantes.',
+                    'Dashboard visual para docentes y estudiantes.'
+                ]
+            },
+            'files': {
+                icon: '<i class="fa-solid fa-folder-open"></i>',
+                color: 'text-yellow-400',
+                bg: 'bg-yellow-400/20',
+                title: 'Archivos y Nube',
+                items: [
+                    'Sistema inteligente de organización de archivos.',
+                    'Conexión e integración nativa con Google Drive.',
+                    'Almacenamiento seguro y central de evidencias.'
+                ]
+            },
+            'chat': {
+                icon: '<i class="fa-solid fa-comments"></i>',
+                color: 'text-brand-mint',
+                bg: 'bg-brand-mint/20',
+                title: 'Comunicación',
+                items: [
+                    'Salas de chat y mensajería interna fluida.',
+                    'Alertas y notificaciones en tiempo real.',
+                    'Vías directas de diálogo entre maestro y alumno.'
+                ]
+            },
+            'sec': {
+                icon: '<i class="fa-solid fa-shield-halved"></i>',
+                color: 'text-red-400',
+                bg: 'bg-red-400/20',
+                title: 'Accesos Seguros',
+                items: [
+                    'Login con un solo clic vía Google y GitHub.',
+                    'Autenticación blindada mediante sistema OAuth.',
+                    'Control y gestión estricta de permisos.'
+                ]
+            },
+            'metrics': {
+                icon: '<i class="fa-solid fa-chart-pie"></i>',
+                color: 'text-cyan-400',
+                bg: 'bg-cyan-400/20',
+                title: 'Métricas y Notas',
+                items: [
+                    'Generación automática de boletines y reportes.',
+                    'Estadísticas de desempeño de la clase entera.',
+                    'Monitoreo de avance individual y de equipos.'
+                ]
+            }
+        };
+
+        function openModal(categoryId) {
+            const modal = document.getElementById('feature-modal');
+            const content = document.getElementById('feature-modal-content');
+            const data = featureData[categoryId];
+            
+            // Llenar datos de UI
+            const iconEl = document.getElementById('modal-icon');
+            iconEl.className = `w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-5 ${data.bg} ${data.color}`;
+            iconEl.innerHTML = data.icon;
+            
+            document.getElementById('modal-title').innerText = data.title;
+            
+            // Construir la lista
+            const listHTML = data.items.map(item => `
+                <li class="flex items-start gap-4">
+                    <div class="mt-0.5 min-w-[20px] h-5 rounded-full bg-white/10 flex items-center justify-center text-gray-300 text-[10px]">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <span class="text-gray-200 text-sm font-medium leading-tight">${item}</span>
+                </li>
+            `).join('');
+            
+            document.getElementById('modal-list').innerHTML = listHTML;
+            
+            // Mostrar modal
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Pequeño retardo para animar
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                content.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeModal(event) {
+            // Si hay evento, asegurarse de que se dio clic en el overlay o en la X, no en la tarjeta blanca
+            if (event && event.target !== event.currentTarget) return;
+            
+            const modal = document.getElementById('feature-modal');
+            const content = document.getElementById('feature-modal-content');
+            
+            // Iniciar animación de salida
+            modal.classList.add('opacity-0');
+            content.classList.add('scale-95');
+            
+            // Ocultar div después de la transición css (0.3s)
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+    </script>
+</body>
+</html>
